@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(to right, #a413b1, #000000, #010253);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    /* Remove fixed height to allow the content to determine the body's height */
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: center;
+    animation: slideIn 2s ease-out;
+    position: relative;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* .logo {
+    width: 50px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: glitch 1.5s infinite;
+} */
+
+/* @keyframes glitch {
+    0% {
+        transform: skew(0deg);
+    }
+
+    20% {
+        transform: skew(-5deg);
+    }
+
+    40% {
+        transform: skew(5deg);
+    }
+
+    60% {
+        transform: skew(-5deg);
+    }
+
+    80% {
+        transform: skew(5deg);
+    }
+
+    100% {
+        transform: skew(0deg);
+    }
+} */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .logo {
+        width: 100px;
+    }
+}
+h1 {
+    font-size: 2.5em;
+    margin: 10px 0;
+    animation: glitchText 2s infinite;
+}
+
+/* @keyframes glitchText {
+    0% {
+        text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+    }
+    20% {
+        text-shadow: -2px -2px #ff0000, 2px 2px #00ff00;
+    }
+    40% {
+        text-shadow: 2px 2px #00ff00, -2px -2px #ff0000;
+    }
+    60% {
+        text-shadow: -2px -2px #00ff00, 2px 2px #ff0000;
+    }
+    80% {
+        text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+    }
+    100% {
+        text-shadow: -2px -2px #ff0000, 2px 2px #00ff00;
+    }
+} */
+
+.description {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    position: relative;
+}
+
+.media {
+    margin-bottom: 30px;
+    text-align: center;
+    /* Center the image */
+}
+
+.media-image {
+    width: 50%;
+    /* Make the image half the size of its container */
+    max-width: 200px;
+    /* Ensure it doesn’t exceed 200px */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 2s ease-in-out, scaleUp 2s ease-in-out;
+    /* Add both fadeIn and scaleUp animations */
+    display: inline-block;
+    /* Ensure the image respects its width */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.5);
+        /* Start at half size */
+    }
+
+    100% {
+        transform: scale(1);
+        /* End at full size */
+    }
+}
+.download {
+    margin-top: 20px;
+    position: relative;
+}
+
+#downloadButton {
+    background-color: #f52004;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#downloadButton:hover {
+    background-color: #0ab88c;
+}
+
+#downloadButton:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 10.01%);
+    background-size: 15px 15px;
+    animation: popUp 2s infinite;
+    z-index: -1;
+}
+
+@keyframes popUp {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}

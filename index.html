@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Firebase Authentication</title>
+		<link rel="stylesheet" href="authstyes.css" />
+		<style>
+			*,
+			*:before,
+			*:after {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background-image: linear-gradient(to right, #291c19, #000000, #023aa3);
+				background: url("/images/auth.jpg") no-repeat center center/cover;
+				background-image: linear-gradient(
+						rgba(8, 69, 94, 0.5),
+						rgba(0, 0, 0, 0.5)
+					),
+					url("/images/auth.jpg");
+				font-family: "Poppins", sans-serif;
+				height: 100vh; /* Full viewport height */
+				margin: 0; /* Remove default margin */
+				overflow: hidden; /* Prevent scrollbars */
+			}
+
+			#auth-container {
+				position: relative;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				flex-direction: column; /* Added for vertical layout */
+			}
+
+			.background {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				z-index: 1;
+			}
+
+			.shape:first-child {
+				background: linear-gradient(#1845ad, #23a2f6);
+				left: -80px;
+				top: -80px;
+			}
+
+			.shape:last-child {
+				background: linear-gradient(to right, #ff512f, #f09819);
+				right: -30px;
+				bottom: -80px;
+			}
+
+			.banner {
+				font-size: 30px;
+				font-weight: 600;
+				color: #f50202ea;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+			/*
+						.auth-section {
+							position: relative;
+							width: 400px;
+							background: rgba(156, 13, 13, 0.13);
+							border-radius: 10px;
+							backdrop-filter: blur(10px);
+							border: 2px solid rgba(255, 255, 255, 0.1);
+							box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+							padding: 50px 35px;
+							z-index: 10;
+							margin-top: 20px;
+						} */
+
+			h1 {
+				font-size: 28px;
+				font-weight: 600;
+				color: #ffffff;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			label {
+				display: block;
+				margin-top: 20px;
+				font-size: 16px;
+				font-weight: 500;
+				color: #ffffff;
+			}
+
+			.password-container {
+				position: relative;
+				background: transparent;
+			}
+
+			input {
+				display: block;
+				height: 50px;
+				width: 100%;
+				background: transparent;
+				border-radius: 20px;
+				padding: 0 10px;
+				margin-top: 8px;
+				font-size: 14px;
+				font-weight: 300;
+				color: #ffffff;
+			}
+
+			input::placeholder {
+				color: #e5e5e5;
+			}
+			/* |
+						.eye-icon {
+							position: absolute;
+							right: 10px;
+							top: 50%;
+							transform: translateY(-50%);
+							cursor: pointer;
+							color: #ffffff;
+							user-select: none;
+						} */
+
+			.auth-section {
+				position: relative;
+				width: 400px;
+				background: transparent;
+				border-radius: 10px;
+				border: none;
+				box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+				padding: 50px 35px;
+				z-index: 10;
+				margin-top: 20px;
+			}
+
+			h1 {
+				font-size: 28px;
+				font-weight: 600;
+				color: #ffffff;
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			/* label {
+				display: block;
+				margin-top: 20px;
+				font-size: 16px;
+				font-weight: 500;
+				color: #ffffff;
+			} */
+
+			input {
+				display: block;
+				height: 50px;
+				width: 100%;
+				background: transparent;
+				border-radius: 20px;
+				border: 2px solid rgba(247, 249, 255, 0.1);
+				padding: 0 10px;
+				margin-top: 8px;
+				font-size: 14px;
+				font-weight: 300;
+				color: #ffffff;
+			}
+
+			input::placeholder {
+				color: white;
+			}
+
+			.eye-icon {
+				position: absolute;
+				right: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				cursor: pointer;
+				color: #ffffff;
+				user-select: none;
+			}
+
+			.footer-text {
+				text-align: center;
+				color: #ffffff;
+				margin-top: 15px;
+			}
+
+			.alert {
+				color: red;
+				text-align: center;
+				margin-top: 10px;
+			}
+
+			.success-message {
+				color: green;
+			}
+
+			.switch {
+				background: none;
+				border: none;
+				color: #ffffff;
+				cursor: pointer;
+				margin-top: 10px;
+				text-decoration: underline;
+			}
+			button {
+				width: 100%;
+				padding: 12px;
+				/* Increased padding for buttons */
+				margin: 5px 0;
+				border: none;
+				border-radius: 25px;
+				background-color: rgb(73, 12, 12, 0.3);
+				/* Button background color */
+				color: rgb(253, 253, 253);
+				cursor: pointer;
+				font-weight: bolder;
+				font-size: 16px;
+				transition: background-color 0.3s ease, transform 0.3s ease;
+				/* Animation for hover */
+			}
+
+			button:hover {
+				background-color: #ff0000;
+				/* Darker shade on hover */
+				transform: translateY(-2px);
+				/* Slight lift on hover */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="auth-container">
+			<div class="background">
+				<div class="shape"></div>
+				<div class="shape"></div>
+			</div>
+			<div id="sign-up-section" class="auth-section">
+				<div class="banner">CUBE MOVIES</div>
+				<h1>Sign Up</h1>
+				<form id="sign-up-form">
+					<input type="email" id="sign-up-email" placeholder="Email" required />
+					<div class="password-container">
+						<input
+							type="password"
+							id="sign-up-password"
+							placeholder="Password"
+							required
+						/>
+						<i id="toggle-sign-up-password" class="eye-icon">👁️</i>
+					</div>
+					<button type="submit">START WATCHING</button>
+				</form>
+				<div id="sign-up-error-message" class="alert"></div>
+				<div id="sign-up-success-message" class="alert success-message"></div>
+				<button class="switch" id="show-sign-in">
+					Already have an account? Sign In
+				</button>
+				<button class="switch" id="show-forgot-password">
+					Forgot Password?
+				</button>
+				<p class="footer-text">Sign up to continue</p>
+			</div>
+
+			<div id="sign-in-section" class="auth-section" style="display: none">
+				<h1>Sign In</h1>
+				<form id="sign-in-form">
+					<input type="email" id="sign-in-email" placeholder="Email" required />
+					<div class="password-container">
+						<input
+							type="password"
+							id="sign-in-password"
+							placeholder="Password"
+							required
+						/>
+						<i id="toggle-sign-in-password" class="eye-icon">👁️</i>
+					</div>
+					<button type="submit">Sign In</button>
+				</form>
+				<div id="sign-in-error-message" class="alert"></div>
+				<div id="sign-in-success-message" class="alert success-message"></div>
+				<button class="switch" id="show-sign-up">
+					Don't have an account? Sign Up
+				</button>
+				<button class="switch" id="show-forgot-password">
+					Forgot Password?
+				</button>
+				<p class="footer-text">Sign in to continue</p>
+			</div>
+
+			<div
+				id="forgot-password-section"
+				class="auth-section"
+				style="display: none"
+			>
+				<h1>Forgot Password</h1>
+				<form id="forgot-password-form">
+					<input
+						type="email"
+						id="forgot-password-email"
+						placeholder="Email"
+						required
+					/>
+					<button type="submit">Reset Password</button>
+				</form>
+				<div id="forgot-password-message" class="alert"></div>
+				<button class="switch" id="show-sign-up-from-forgot">
+					Back to Sign Up
+				</button>
+				<button class="switch" id="show-sign-in-from-forgot">
+					Back to Sign In
+				</button>
+			</div>
+
+			<div
+				id="email-verified-section"
+				class="auth-section"
+				style="display: none"
+			>
+				<h1>Email Verified</h1>
+				<p>
+					Your email has been successfully verified. Click below to continue.
+				</p>
+				<button id="continue-button">Continue</button>
+			</div>
+
+			<div id="confirmation-section" class="auth-section" style="display: none">
+				<h1>Confirmation</h1>
+				<p>
+					Your action has been successfully completed! You can proceed further.
+				</p>
+				<button id="proceed-button">Proceed</button>
+			</div>
+		</div>
+
+		<script type="module" src="authscript.js"></script>
+
+		<script type="module">
+			// Import the functions you need from the SDKs you need
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+			import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+
+			// Your web app's Firebase configuration
+			const firebaseConfig = {
+							apiKey: "w",
+				authDomain: "tbom",
+				projectId: "t4",
+				storageBucket: "tcom",
+				messagingSenderId: "36",
+				appId: "f",
+				measurementId: "4",
+			};
+
+			// Initialize Firebase
+			const app = initializeApp(firebaseConfig);
+			const analytics = getAnalytics(app);
+		</script>
+	</body>
+</html>

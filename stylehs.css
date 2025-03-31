@@ -1,0 +1,916 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(-45deg, #000000, #82f54d, #ff0044, #6a0dad);
+    /* Black, Pink, Red, Purple */
+    background-size: 400% 400%;
+    color: #fefefe;
+    /* Text Color */
+    position: relative;
+    animation: gradientBackground 15s ease infinite, fadeInHeader 1s ease-out, slideInHeader 1s ease-out;
+}
+.floating-profile {
+    position: fixed;
+    bottom: 420px;
+    left: 20px;
+    width: 50px;
+    /* Adjust size as needed */
+    height: 50px;
+    /* Adjust size as needed */
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Semi-transparent background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Ensure it’s above other content */
+}
+
+.profile-icon {
+    width: 80%;
+    /* Adjust size as needed */
+    height: auto;
+}
+/* Animation for gradient background */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animation for header fading in */
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animation for header sliding in */
+@keyframes slideInHeader {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    animation: logoAnimation 1s ease-out;
+}
+
+/* Animation for logo fading in */
+@keyframes logoAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Logo Styles */
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Search Input */
+#search {
+    background: transparent;
+    padding: 0.5em 1em;
+    border: 2px solid #fab9b9;
+    /* Border Color */
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 150px;
+    transition: border-color 0.3s, transform 0.3s;
+    color: #fff;
+}
+
+/* Hover effect for search input */
+#search:hover {
+    border-color: #ff5777;
+    transform: scale(1.05);
+}
+
+/* Movie Form */
+#movie-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+.update-corner {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: #fff;
+}
+
+.update-corner h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.update-corner p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.updates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.update {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+}
+
+.update h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.update p {
+    margin: 5px 0;
+}
+
+.update small {
+    display: block;
+    color: #bbb;
+    margin-top: 10px;
+}
+.update-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ff9f1a;
+}
+
+.update-link:hover {
+    text-decoration: underline;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    .app {
+        width: 120px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .app {
+        width: 100px;
+        padding: 5px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 300px) {
+    .app {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+}
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+
+form {
+    display: flex;
+}
+
+#search {
+    background: transparent;
+    padding: 0.5em 1em;
+    border: 2px solid #fab9b9; /*(--brand-color);*/
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100px;
+    transition: border-color 0.3s;
+    color: #fff;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #e50914;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.result-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 100%;
+    /* Adjust width to fit the parent container */
+}
+/* Basic reset MeganMedia */
+ul {
+    list-style: none;
+    /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+/* Container for the animation */
+.animated-list {
+    padding: 0;
+}
+
+/* Style for each list item */
+.animated-list li {
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below */
+    animation: fadeInUp 1s ease-out forwards;
+    /* Apply animation */
+    margin-bottom: 15px;
+    /* Space between items */
+}
+
+/* Animation for the list items */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style for the anchor tags */
+.animated-list a {
+    text-decoration: none;
+    /* Remove underline */
+    color: #23d5ab;
+    /* Color for the link */
+    font-weight: 600;
+    /* Bold text */
+    font-size: 18px;
+    /* Font size */
+    transition: color 0.3s ease;
+    /* Smooth color transition */
+}
+
+/* Hover effect for the anchor tags */
+.animated-list a:hover {
+    color: #fff;
+    /* Change color on hover */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Add text shadow on hover */
+}
+
+/* Flexbox layout for larger screens */
+@media (min-width: 1600px) {
+    .movies-container {
+        display: grid;
+        /* Use grid for larger screens */
+        grid-template-columns: repeat(5, 1fr);
+        /* Five columns */
+    }
+}
+
+@media (min-width: 2000px) {
+    .movies-container {
+        grid-template-columns: repeat(6, 1fr);
+        /* Six columns */
+    }
+}
+
+/* Flexbox layout for medium screens */
+@media (max-width: 900px) {
+    .movies-container {
+        grid-template-columns: 1fr;
+        /* Single column layout */
+        grid-auto-rows: 60vh;
+        /* Adjust row height */
+    }
+}
+
+/* Flexbox layout for smaller screens */
+@media (max-width: 500px) {
+    .movies-container {
+        grid-template-columns: 1fr 1fr;
+        /* Two columns */
+        grid-auto-rows: 60vh;
+        /* Adjust row height */
+    }
+}
+
+/* Grid layout for very small screens */
+@media (max-width: 300px) {
+    .movies-container {
+        display: grid;
+        /* Use grid for very small screens */
+        grid-template-columns: 1fr 1fr;
+        /* Two columns of equal width */
+        grid-auto-rows: auto;
+        /* Adjust row height to fit content */
+        gap: 0.5em;
+        /* Space between grid items */
+        width: 100%;
+        /* Full width of the container */
+    }
+}
+/* General Styling for Movie Cards */
+/* General Styling for Movie Cards */
+.movie {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(20% - 20px);
+    /* Adjust width for grid layout */
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, height 0.3s ease;
+    margin: 10px;
+    /* Space around each movie card */
+}
+
+/* Image Styling */
+.movie img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Hover Effect */
+.movie:hover {
+    transform: scale(1.05);
+}
+
+/* Brief Section Styling */
+.movie-brief {
+    padding: 10px;
+    color: #fff;
+    background: none;
+    /* Remove background on hover */
+}
+
+/* Title Styling */
+.movie-title {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Rating Styling */
+.movie-rating {
+    font-size: 14px;
+    color: #ff9f1a;
+}
+
+/* Overview Section Styling */
+.movie-overview {
+    display: none;
+    /* Hide overview section by default */
+}
+
+/* Button Styling */
+.view-details-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #ff9f1a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    /* Ensure it's clickable */
+    transition: background-color 0.3s ease;
+}
+
+.view-details-button:hover {
+    background-color: #e68a00;
+}
+
+/* Responsive Layouts */
+
+/* Mobile View */
+media (max-width: 900px){
+.movies-container {
+  @  di@media (min-width: 1025px) {
+    .movie {
+        width: calc(20% - 20px);
+        /* Five columns on larger screens */
+    }
+
+    .movie img {
+        height: 300px;
+        /* Adjust height for desktop */
+    }
+
+@media (max-width: 500px){
+    .movies-container{
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 60vh;
+    }
+}
+
+@media(max-width: 300px){
+    .movies-container{
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 80vh;
+    }
+    body{
+        padding: 0 0.5em;
+    }
+}
+
+@media (min-width: 1600px){
+    .movies-container{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 2000px){
+    .movies-container{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+/* Tablet View (Two Columns) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .movie {
+        width: calc(50% - 20px);
+        /* Two columns on tablet screens */
+    }
+
+    .movie img {
+        height: 250px;
+        /* Adjust height for tablet */
+    }
+}
+
+/* Desktop View (Five Columns) */
+@media (min-width: 1025px) {
+    .movie {
+        width: calc(20% - 20px);
+        /* Five columns on larger screens */
+    }
+
+    .movie img {
+        height: 300px;
+        /* Adjust height for desktop */
+    }
+}
+/* existing styles */
+
+
+.movie {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(20% - 20px);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-align: center; /* Center align text */
+}
+
+.movie img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.movie:hover {
+    transform: scale(1.05);
+}
+
+.movie-brief {
+    padding: 10px;
+}
+
+.movie-title {
+    font-size: 18px;
+    margin: 0;
+}
+
+.movie-rating {
+    font-size: 14px;
+    color: #ff9f1a;
+}
+
+.movie-overview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    display: none;
+}
+
+.movie:hover .movie-overview {
+    display: block;
+}
+
+.movie-details-container {
+    padding: 20px;
+}
+
+.back-button {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    background: #e50914;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px;
+}
+/* Additions to the existing styles */
+.movie-details-container {
+    padding: 20px;
+}
+
+.movie-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie-header img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.movie-title {
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+.movie-rating {
+    font-size: 18px;
+    color: #ff9f1a;
+    margin-top: 10px;
+}
+
+.movie-overview, .movie-plot {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.movie-videos, .movie-scenes {
+    margin-top: 30px;
+}
+
+.movie-videos h2, .movie-scenes h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.movie-videos iframe, .movie-scenes img {
+    width: 100%;
+    max-width: 560px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+ /* /moviedetails */
+/* Additions to the existing styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.back-button {
+    text-decoration: none;
+    color: #ff9f1a;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.movie-details-container {
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.movie-header img {
+    width: 300px;
+    border-radius: 10px;
+}
+
+.movie-title {
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+.movie-rating {
+    font-size: 18px;
+    color: #ff9f1a;
+    margin-top: 10px;
+}
+
+.movie-overview,
+.movie-plot,
+.movie-details-text {
+    margin-top: 20px;
+    font-size: 18px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.movie-videos,
+.movie-scenes {
+    margin-top: 30px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.movie-videos h2,
+.movie-scenes h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.movie-videos iframe,
+.movie-scenes iframe {
+    width: 100%;
+    max-width: 560px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Additions for updates.html */
+.updates-container {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: #fff;
+}
+
+.update {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.update h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.update p {
+    margin: 10px 0;
+}
+
+.update small {
+    color: #bbb;
+}
+
+/* Responsive grid layout adjustments for movies-container */
+.movies-container {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: auto;
+    padding: 20px;
+    list-style: none;
+}
+
+/* Individual movie containers */
+.movie-item {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+/* Movie titles */
+.movie-item h3 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #e5e5e5;
+}
+
+/* Movie descriptions */
+.movie-item p {
+    font-size: 14px;
+    color: #bbb;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .movies-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+@media (max-width: 500px) {
+    .movies-container {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+    }
+}
+
+@media (max-width: 300px) {
+    .movies-container {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    body {
+        padding: 0 0.5em;
+    }
+}
+
+@media (min-width: 1600px) {
+    .movies-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 2000px) {
+    .movies-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+/* About Modal Styles */
+#about-modal .modal-content {
+    background: linear-gradient(to bottom right, #ff6b6b, #48dbfb, #1dd1a1, #feca57);
+    color: #fff;
+    max-height: 70vh; /* Set a maximum height for the modal */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Modal Styles */
+./* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom right, #ff6b6b, #48dbfb, #1dd1a1, #feca57);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    max-height: 70vh; /* Set a maximum height for the modal */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}

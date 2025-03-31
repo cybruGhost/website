@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Jennie Player</title>
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+			import {
+				getAuth,
+				onAuthStateChanged,
+			} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+			const firebaseConfig = {
+							apiKey: "w",
+				authDomain: "tbom",
+				projectId: "t4",
+				storageBucket: "tcom",
+				messagingSenderId: "36",
+				appId: "f",
+				measurementId: "4",
+			};
+
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
+
+			// Redirect if not signed in
+			onAuthStateChanged(auth, (user) => {
+				if (!user || !user.emailVerified) {
+					// Redirect to index.html in the parent directory
+					window.location.href = "../index.html";
+				}
+			});
+		</script>
+
+		<link rel="stylesheet" href="Megan media/hstyles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<img
+					src="Megan media/imagesa/logo.png"
+					alt="The Cube Logo"
+					class="logo"
+				/>
+				<h1>GET JENNIE</h1>
+			</header>
+
+			<section class="description">
+				<p>A Media Player for the Cube App.</p>
+				<p>The Cube</p>
+			</section>
+
+			<!-- <section class="media">
+				<img src="Megan media/imagesa/189638.png" class="media-image" />
+			</section> -->
+
+			<section class="download">
+				<button id="downloadButton">Download APK</button>
+			</section>
+		</div>
+
+		<script src="Megan media/juna.js"></script>
+	</body>
+	<footer>
+		<p
+			style="
+				text-align: center;
+				color: white;
+				background-color: transparent;
+				bottom: auto;
+				margin-top: 200px;
+			"
+		>
+			&copy; 2024 The Cube
+		</p>
+	</footer>
+</html>

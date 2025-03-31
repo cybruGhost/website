@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cube - Movie Downloads</title>
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #141414;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Netflix-style Header */
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e50914;
+        }
+        .nav {
+            font-size: 18px;
+        }
+        
+        /* Dark/Light Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        /* Description and Button Section */
+        .description {
+            padding: 20px;
+            text-align: center;
+            max-width: 800px;
+            color: #b3b3b3;
+        }
+
+        /* Netflix-style Preview Section */
+        .preview-container {
+            width: 90%;
+            height: 70vh;
+            margin: 20px 0;
+            background-color: #333;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Loading Indicator */
+        #loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        /* Interactive Buttons */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .custom-button {
+            background-color: #e50914;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .custom-button:hover {
+            background-color: #b20710;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #181818;
+            padding: 15px;
+            width: 100%;
+            text-align: center;
+            color: #b3b3b3;
+            font-size: 14px;
+            margin-top: 20px;
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Light Theme */
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        body.light-mode header {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        body.light-mode .theme-toggle {
+            color: #333;
+        }
+        body.light-mode .description {
+            color: #555;
+        }
+        body.light-mode .preview-container {
+            background-color: #e0e0e0;
+        }
+        body.light-mode .custom-button {
+            background-color: #007bff;
+        }
+        body.light-mode footer {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+        #notification-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #333; /* Dark background for contrast */
+    padding: 20px; /* Increased padding for better spacing */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    color: #fff; /* White text for readability */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+}
+
+#notification-container h2 {
+    margin-bottom: 15px; /* Space below the heading */
+    font-size: 24px; /* Larger font size for the heading */
+    text-align: center; /* Center
+    </style>
+</head>
+<body>
+    <!-- Netflix-style Header -->
+    <header>
+        <div class="logo">The Cube</div>
+        <nav class="nav">Your Movie Download Destination</nav>
+        <!-- Dark/Light Mode Toggle Button -->
+        <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+    </header>
+
+    <!-- Description Section -->
+    <div class="description">
+        <p>Welcome to <strong>The Cube</strong>, the ultimate place to preview and download movies from MovieBox.ng! If you prefer to download and enjoy offline, you’re in the right spot. Browse our selection and start downloading your favorite films now.</p>
+    </div>
+
+    <!-- MovieBox Preview Section -->
+    <div class="preview-container">
+        <div id="loading">Loading content...</div>
+        <iframe src="https://moviebox.ng" title="MovieBox.ng Preview" onload="hideLoading()"></iframe>
+    </div>
+
+    <!-- Interactive Buttons -->
+    <div class="button-container">
+        <button class="custom-button" onclick="downloadAlert()">Download Movies</button>
+        <button class="custom-button" onclick="learnMoreAlert()">Learn More</button>
+        <button class="custom-button" onclick="toggleFullscreen()">Fullscreen</button>
+    </div>
+<!-- Notification Section -->
+<div id="notification-container" style="width: 100%; max-width: 600px; margin: 20px auto; background-color: #333; padding: 15px; border-radius: 5px; color: #fff;">
+    <h2>Notifications</h2>
+    <ul id="notification-list"></ul>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 The Cube. All rights reserved. Your destination for movie previews and downloads.
+    </footer>
+  <script type="module" src="firebase-init.js"></script>
+  <!-- Include Firebase and your scripts -->
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-messaging.js"></script>
+<script src="firebase-messaging-sw.js"></script>
+<script src="firebase.js"></script>
+<script src="notifications.js"></script>
+    <script>
+        // Hide the loading indicator once iframe loads
+        function hideLoading() {
+            document.getElementById("loading").style.display = 'none';
+        }
+
+        function downloadAlert() {
+            alert("Downloading is available! Explore movie options and download directly from MovieBox.");
+        }
+
+        function learnMoreAlert() {
+            alert("The Cube lets you view and download movies from MovieBox.ng for offline watching!");
+        }
+
+        // Toggle Fullscreen for the iframe
+        function toggleFullscreen() {
+            const iframe = document.querySelector("iframe");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        // Toggle Dark/Light Mode
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            body.classList.toggle('light-mode');
+            themeToggle.textContent = body.classList.contains('light-mode') ? '🌞' : '🌙';
+        }
+    </script>
+</body>
+</html>

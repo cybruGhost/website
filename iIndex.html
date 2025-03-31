@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anizone - Welcome</title>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged,
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "Ygw",
+            authDomain: "tm",
+            projectId: "the",
+            storageBucket: "om",
+            messagingSenderId: "36",
+            appId: "19f",
+            measurementId: "GH4",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Redirect if not signed in
+        onAuthStateChanged(auth, (user) => {
+            if (!user || !user.emailVerified) {
+                // If the user is not signed in or email not verified, redirect to sign-in page
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="ANIZONE/styles.css">
+    <script type="module" src="firebaseConfig.js" defer></script>
+    <script type="module" src="auth.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="iIndex.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Welcome to Anizone</h1>
+        <p>Your gateway to endless anime fun! Sign up now to explore our amazing anime app.</p>
+        <button onclick="window.location.href = 'index.html';">Register Now</button>
+    </div>
+    <footer>
+        <p>© 2024 Anizone</p>
+    </footer>
+</body>
+</html>

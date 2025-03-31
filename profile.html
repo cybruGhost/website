@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>User Profile</title>
+		<link rel="stylesheet" href="profilestyles.css" />
+		<script type="module" src="profile.js" defer></script>
+		<!-- Link to your profile script -->
+	</head>
+
+	<body>
+		<header>
+			<h1>User Profile👤</h1>
+		</header>
+		<main>
+			<input
+				type="file"
+				id="profile-pic-upload"
+				accept="image/*"
+				style="display: none"
+			/>
+			<img
+				id="profile-pic"
+				src="images/sudhgs.jpeg"
+				alt="Profile Picture"
+				class="profile-pic"
+			/>
+
+			<button id="upload-pic-btn">Upload Profile Picture</button>
+			<button id="remove-pic-btn">Remove Profile Picture</button>
+			<div>
+				<p>Email: <span id="email"></span></p>
+				<p>Nickname: <span id="nickname"></span></p>
+				<p>Last Seen: <span id="last-seen"></span></p>
+				<div id="watch-history-container">Loading watch history...</div>
+				<div id="alerts-container"></div>
+			</div>
+
+			<button id="change-nickname-btn">Change Nickname</button>
+			<button id="change-password-btn">Change Password</button>
+			<button id="delete-account-btn">Delete Account</button>
+			<button id="clear-watch-history-btn">Clear Watch History</button>
+			<button id="back-button" onclick="window.location.href='cub4.html';">
+				Back
+			</button>
+
+			<!-- Change Nickname Modal -->
+			<div id="change-nickname-modal" class="modal" style="display: none">
+				<h3>Change Nickname</h3>
+				<input type="text" id="new-nickname" placeholder="New Nickname" />
+				<button id="save-nickname-btn">Save</button>
+				<button id="close-nickname-modal">Close</button>
+			</div>
+
+			<!-- Change Password Modal -->
+			<div id="change-password-modal" class="modal" style="display: none">
+				<h3>Change Password</h3>
+				<input type="password" id="new-password" placeholder="New Password" />
+				<button id="save-password-btn">Save</button>
+				<button id="close-password-modal">Close</button>
+			</div>
+
+			<!-- Delete Account Modal -->
+			<div id="delete-account-modal" class="modal" style="display: none">
+				<h3>Are you sure you want to delete your account?</h3>
+				<button id="confirm-delete-btn">Delete</button>
+				<button id="close-delete-modal">Close</button>
+			</div>
+
+			<button id="logout-button">Logout</button>
+			<button id="theme-toggle-btn">Toggle Theme</button>
+		</main>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const watchHistoryContainer = document.getElementById(
+					"watch-history-container"
+				);
+				displayWatchHistory();
+
+				function displayWatchHistory() {
+					const watchHistory =
+						JSON.parse(localStorage.getItem("watchHistory")) || [];
+					watchHistoryContainer.innerHTML = ""; // Clear previous watch history
+
+					if (watchHistory.length > 0) {
+						// Display each movie in the watch history
+						watchHistoryContainer.innerHTML = watchHistory
+							.map(
+								({ title, image }) => `
+                    <div>
+                        <img src="${image}" alt="${title}" width="50" height="75" />
+                        <span>${title}</span> <!-- Added span for title for better styling -->
+                    </div>
+                `
+							)
+							.join("");
+					} else {
+						watchHistoryContainer.innerHTML = "No watch history available.";
+					}
+				}
+
+				// JavaScript to handle modal opening and closing
+				const changeNicknameBtn = document.getElementById(
+					"change-nickname-btn"
+				);
+				if (changeNicknameBtn) {
+					changeNicknameBtn.addEventListener("click", () => {
+						document.getElementById("change-nickname-modal").style.display =
+							"block";
+					});
+				}
+
+				const changePasswordBtn = document.getElementById(
+					"change-password-btn"
+				);
+				if (changePasswordBtn) {
+					changePasswordBtn.addEventListener("click", () => {
+						document.getElementById("change-password-modal").style.display =
+							"block";
+					});
+				}
+
+				const deleteAccountBtn = document.getElementById("delete-account-btn");
+				if (deleteAccountBtn) {
+					deleteAccountBtn.addEventListener("click", () => {
+						document.getElementById("delete-account-modal").style.display =
+							"block";
+					});
+				}
+
+				// Close buttons
+				const closeNicknameModal = document.getElementById(
+					"close-nickname-modal"
+				);
+				if (closeNicknameModal) {
+					closeNicknameModal.addEventListener("click", () => {
+						document.getElementById("change-nickname-modal").style.display =
+							"none";
+					});
+				}
+
+				const closePasswordModal = document.getElementById(
+					"close-password-modal"
+				);
+				if (closePasswordModal) {
+					closePasswordModal.addEventListener("click", () => {
+						document.getElementById("change-password-modal").style.display =
+							"none";
+					});
+				}
+
+				const closeDeleteModal = document.getElementById("close-delete-modal");
+				if (closeDeleteModal) {
+					closeDeleteModal.addEventListener("click", () => {
+						document.getElementById("delete-account-modal").style.display =
+							"none";
+					});
+				}
+
+				// Logout button functionality
+				const logoutButton = document.getElementById("logout-button");
+				if (logoutButton) {
+					logoutButton.addEventListener("click", () => {
+						firebase
+							.auth()
+							.signOut()
+							.then(() => {
+								// Sign-out successful.
+								window.location.href = "index.html"; // Redirect to index.html after successful logout
+							})
+							.catch((error) => {
+								// An error happened during logout.
+								console.error("Logout error:", error);
+								// Optionally, show an error message to the user
+								const alertContainer =
+									document.getElementById("alerts-container");
+								alertContainer.innerHTML = `<div class="alert">Logout failed: ${error.message}</div>`;
+							});
+					});
+				}
+			});
+			document.addEventListener("DOMContentLoaded", () => {
+				const profilePicUpload = document.getElementById("profile-pic-upload");
+				const profilePic = document.getElementById("profile-pic");
+				const uploadPicBtn = document.getElementById("upload-pic-btn");
+				const removePicBtn = document.getElementById("remove-pic-btn");
+
+				// Handle profile picture upload
+				uploadPicBtn.addEventListener("click", () => {
+					profilePicUpload.click();
+				});
+
+				profilePicUpload.addEventListener("change", (event) => {
+					const file = event.target.files[0];
+					if (file) {
+						const reader = new FileReader();
+						reader.onload = (e) => {
+							profilePic.src = e.target.result;
+							localStorage.setItem("profilePic", e.target.result);
+						};
+						reader.readAsDataURL(file);
+					}
+				});
+
+				// Remove profile picture
+				removePicBtn.addEventListener("click", () => {
+					// Remove the profile picture from the profile page
+					profilePic.src = "images/sudhgs.jpeg"; // Default image
+
+					// Remove the profile picture from local storage
+					localStorage.removeItem("profilePic");
+				});
+
+				// Load saved profile picture
+				const savedProfilePic = localStorage.getItem("profilePic");
+				if (savedProfilePic) {
+					profilePic.src = savedProfilePic;
+				}
+			});
+			document.addEventListener("DOMContentLoaded", () => {
+				const themeToggleBtn = document.getElementById("theme-toggle-btn");
+
+				// Check and apply saved theme preference
+				const currentTheme = localStorage.getItem("theme") || "dark";
+				document.documentElement.setAttribute("data-theme", currentTheme);
+
+				themeToggleBtn.addEventListener("click", () => {
+					const newTheme =
+						document.documentElement.getAttribute("data-theme") === "dark"
+							? "light"
+							: "dark";
+					document.documentElement.setAttribute("data-theme", newTheme);
+					localStorage.setItem("theme", newTheme);
+
+					// Optionally notify other pages
+					window.dispatchEvent(new Event("themeChange"));
+				});
+			});
+		</script>
+		<script src="ui.js"></script>
+		<script src="app.js"></script>
+		<script type="module" src="scripts/watchHistory.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-analytics.js"></script>
+	</body>
+</html>

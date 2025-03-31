@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Searched Movies</title>
+		<link rel="stylesheet" href="searched/searchedstyles.css" />
+	</head>
+
+	<body>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				// Apply the saved theme preference
+				const currentTheme = localStorage.getItem("theme") || "dark";
+				document.documentElement.setAttribute("data-theme", currentTheme);
+
+				window.addEventListener("themeChange", () => {
+					// Apply the saved theme preference on theme change
+					const newTheme = localStorage.getItem("theme");
+					document.documentElement.setAttribute("data-theme", newTheme);
+				});
+
+				const themeToggleBtn = document.getElementById("theme-toggle-btn");
+				themeToggleBtn.addEventListener("click", () => {
+					const newTheme =
+						document.documentElement.getAttribute("data-theme") === "dark"
+							? "light"
+							: "dark";
+					document.documentElement.setAttribute("data-theme", newTheme);
+					localStorage.setItem("theme", newTheme);
+
+					// Notify other pages
+					window.dispatchEvent(new Event("themeChange"));
+				});
+			});
+		</script>
+		<header>
+			<div class="logo-container">
+				<img src="images/logo.png" alt="The Cube Logo" class="logo" />
+			</div>
+			<form id="movie-form">
+				<input
+					type="text"
+					id="search"
+					placeholder="Search for movies..."
+					required
+				/>
+				<button type="submit">Search</button>
+			</form>
+		</header>
+		<strong><p>SEARCH RESULTS</p></strong>
+		<button id="back-button" onclick="window.location.href='cub4.html';">
+			Back
+		</button>
+		<main>
+			<div class="result-title"></div>
+			<div class="movies-container"></div>
+		</main>
+		<script src="movie.js"></script>
+		<script src="ui.js"></script>
+		<script src="searched_movies.js"></script>
+	</body>
+</html>

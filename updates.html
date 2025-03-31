@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Update Corner</title>
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+			import {
+				getAuth,
+				onAuthStateChanged,
+			} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+			const firebaseConfig = {
+							apiKey: "w",
+				authDomain: "tbom",
+				projectId: "t4",
+				storageBucket: "tcom",
+				messagingSenderId: "36",
+				appId: "f",
+				measurementId: "4",
+			};
+
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
+
+			// Redirect if not signed in
+			onAuthStateChanged(auth, (user) => {
+				if (!user || !user.emailVerified) {
+					// If the user is not signed in or email not verified, redirect to sign-in page
+					window.location.href = "index.html";
+				}
+			});
+		</script>
+		<style>
+			/* General Styles */
+			body {
+				background-image: linear-gradient(
+						rgba(8, 69, 94, 0.5),
+						rgba(0, 0, 0, 0.5)
+					),
+					url("/images/auth.jpg");
+				background-size: cover; /* Cover the entire viewport */
+				background-position: center center; /* Center the background image */
+				font-family: "Poppins", sans-serif;
+				margin: 0; /* Remove default margin */
+				overflow: auto; /* Allow scrolling */
+				min-height: 100vh; /* Ensure body takes at least full viewport height */
+			}
+
+			@keyframes gradientBackground {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
+			header {
+				background: #333;
+				color: #fff;
+				padding: 10px;
+				text-align: center;
+				border-bottom: 2px solid #e73c7e; /* Decorative border */
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			}
+
+			.logo-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+			}
+
+			.logo {
+				width: 30px;
+				height: auto;
+				margin-right: 5px;
+			}
+
+			nav {
+				margin-top: 5px;
+			}
+
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: flex;
+				justify-content: center;
+				background: #444;
+				border-radius: 5px;
+			}
+
+			ul li {
+				margin: 0;
+			}
+
+			ul li a {
+				color: #fff;
+				text-decoration: none;
+				font-size: 12px;
+				padding: 6px 10px;
+				display: block;
+				transition: background-color 0.3s, color 0.3s;
+				border-radius: 5px;
+			}
+
+			ul li a:hover {
+				background-color: #ee3e79;
+				color: #fff;
+			}
+
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1;
+				left: 10%;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				/* background-color:rgba(255, 228, 228, 0.6); */
+				animation: fadeIn 0.5s;
+			}
+
+			.modal-content {
+				color: #ffffff;
+				margin: 10% auto;
+				padding: 15px;
+				border: 1px solid #000000;
+				width: 80%;
+				max-width: 400px;
+				max-height: 80vh; /* Maximum height for scrolling */
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				animation: slideIn 0.5s ease-out;
+				background-image: linear-gradient(to right, #291c19, #000000, #a2bceb);
+				background: url("/images/auth.jpg") no-repeat center center/cover;
+				background-image: linear-gradient(
+						rgba(8, 69, 94, 0.5),
+						rgba(0, 0, 0, 0.5)
+					),
+					url("/images/auth.jpg");
+				font-family: "Poppins", sans-serif;
+				overflow: auto; /* Enable scrolling if content overflows */
+			}
+
+			.close {
+				color: #f86060;
+				float: right;
+				font-size: 20px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: #f10c0c;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			.highlight {
+				color: #ce14ce;
+				font-weight: bold;
+			}
+
+			main {
+				padding: 20px;
+				text-align: center;
+			}
+
+			.updates-container {
+				margin-bottom: 20px;
+			}
+
+			.update {
+				color: #fffefe;
+				padding: 8px;
+				margin: 10px auto;
+				border-radius: 6px;
+				box-shadow: 0 2px 4px rgba(248, 33, 33, 0.2);
+				width: 80%;
+				max-width: 400px;
+				text-align: left;
+				animation: fadeIn 0.5s ease-in-out;
+				position: relative;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				flex-direction: column; /* Added for vertical layout */
+			}
+
+			.background {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				z-index: 1;
+			}
+
+			#download-button {
+				background-color: #ff0202;
+				border: none;
+				color: white;
+				padding: 12px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 10px 0;
+				cursor: pointer;
+				border-radius: 8px;
+				transition: background-color 0.3s, transform 0.3s;
+				animation: bounce 1s infinite;
+			}
+
+			#download-button:hover {
+				background-color: #1b9e0a;
+				transform: scale(1.05);
+			}
+
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+
+			@keyframes slideIn {
+				from {
+					transform: translateY(-20px);
+					opacity: 0;
+				}
+				to {
+					transform: translateY(0);
+					opacity: 1;
+				}
+			}
+
+			@keyframes bounce {
+				0%,
+				20%,
+				50%,
+				80%,
+				100% {
+					transform: translateY(0);
+				}
+				40% {
+					transform: translateY(-10px);
+				}
+				60% {
+					transform: translateY(-5px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="logo-container">
+				<img src="images/logo.png" alt="The Cube Logo" class="logo" /> - App
+				Update Corner
+			</div>
+			<nav>
+				<ul>
+					<li><a href="cub4.html">Home</a></li>
+					<li><a href="index.html">Sign In</a></li>
+					<li><a href="#" onclick="openModal('about-modal')">About</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- About Modal -->
+		<div id="about-modal" class="modal">
+			<div class="modal-content">
+				<span class="close" onclick="closeModal('about-modal')">&times;</span>
+				<h2>About Us</h2>
+				<p>
+					🎬 Welcome to <span class="highlight">"The Cube"</span> - Your
+					Ultimate Movie Destination! 🎬
+				</p>
+				<p>
+					"The Cube" is Cubic Company's immersive online movie site, your ticket
+					to an extensive collection of cinematic treasures. 🍿
+				</p>
+
+				<h2 class="highlight">🌟 Unparalleled Variety 🌟</h2>
+				<p>
+					From Hollywood blockbusters to indie masterpieces, "The Cube" offers a
+					vast selection of films for movie enthusiasts of all tastes. 🎥
+				</p>
+
+				<h2 class="highlight">🚀 Movie Magic Awaits 🚀</h2>
+				<p>
+					Immerse yourself in a world of captivating storytelling and cinematic
+					experiences, all from the comfort of your screen. 🌠
+				</p>
+
+				<p>
+					Join us at "The Cube" and embark on a cinematic journey like no other!
+					🍿🎥🌟 #TheCube #MovieMagic
+				</p>
+			</div>
+		</div>
+
+		<main>
+			<div class="updates-container">
+				<!-- Updates will be dynamically inserted here -->
+			</div>
+			<button id="download-button">Download Update</button>
+		</main>
+
+		<script src="updates.js"></script>
+	</body>
+</html>

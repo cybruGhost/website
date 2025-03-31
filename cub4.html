@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Cub4 Page</title>
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+			import {
+				getAuth,
+				onAuthStateChanged,
+			} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+			const firebaseConfig = {
+							apiKey: "w",
+				authDomain: "tbom",
+				projectId: "t4",
+				storageBucket: "tcom",
+				messagingSenderId: "36",
+				appId: "f",
+				measurementId: "4",
+			};
+
+
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
+
+			// Redirect if not signed in
+			onAuthStateChanged(auth, (user) => {
+				if (!user || !user.emailVerified) {
+					// If the user is not signed in or email not verified, redirect to sign-in page
+					window.location.href = "index.html";
+				}
+			});
+		</script>
+		<link rel="stylesheet" href="cube4.css" />
+		<style>
+			/* Floating Profile Button Styles */
+			.floating-profile {
+				position: fixed;
+				top: 130px;
+				left: 20px;
+				background-color: #333;
+				color: #fff;
+				border-radius: 50%;
+				padding: 10px;
+				text-align: center;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+				transition: transform 0.3s ease;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				z-index: 9999;
+				overflow: hidden;
+				border: 5px solid transparent; /* Initially transparent border */
+			}
+
+			.floating-profile:hover {
+				transform: scale(1.1);
+			}
+
+			.profile-icon {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				margin-bottom: 5px;
+			}
+
+			/* Spiral Animation for Flickering Effect */
+			@keyframes spiralFlicker {
+				0% {
+					border-color: transparent;
+				}
+				20% {
+					border-color: red;
+				}
+				40% {
+					border-color: green;
+				}
+				60% {
+					border-color: blue;
+				}
+				80% {
+					border-color: yellow;
+				}
+				100% {
+					border-color: transparent;
+				}
+			}
+
+			.spiral-flicker {
+				animation: spiralFlicker 4.5s linear forwards; /* Spiral flicker effect */
+			}
+
+			.watch-history-container {
+				margin-top: 20px;
+				color: #333;
+			}
+
+			.movie {
+				cursor: pointer; /* Change cursor to pointer for movie items */
+				margin: 5px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="logo-container">
+				<img src="images/logo.png" alt="The Cube Logo" class="logo" />
+			</div>
+			<form id="movie-form">
+				<input
+					type="text"
+					id="search"
+					placeholder="Search for movies..."
+					required
+				/>
+				<button type="submit">Search</button>
+			</form>
+		</header>
+
+		<main>
+			<main>
+				<!-- Floating profile button -->
+				<a href="profile.html" class="floating-profile" id="profile-button">
+					<img
+						src="images/sudhgs.jpeg"
+						alt="Profile"
+						class="profile-icon"
+						id="homepage-profile-pic"
+					/>
+					<p>Profile</p>
+				</a>
+			</main>
+
+			<p>Welcome to The Cube</p>
+			<div class="animated-line"></div>
+			<!-- Animated line below the welcome message -->
+
+			<div class="movies-container">
+				<!-- Movies will be dynamically inserted here -->
+			</div>
+			<ul class="animated-list">
+				<li><a href="ndex.html">Jennie Player</a></li>
+				<p>Download <strong>Jennie😎🔥player </strong>here-(click me)</p>
+			</ul>
+			<div class="update-corner">
+				<h2>Update Corner</h2>
+				<p>Download the <strong>Cube App</strong> to start watching</p>
+
+				<div class="updates-container">
+					<!-- Updates will be dynamically inserted here -->
+				</div>
+
+				<a href="updates.html" class="update-link">
+					<strong> Click here 😎👌🔥 to Download now</strong></a
+				>
+			</div>
+			<div id="watch-history-container" class="watch-history-container">
+				Loading watch history...
+			</div>
+			<ul class="animated-list">
+				<li><a href="credits.html">Credits to developer</a></li>
+			</ul>
+		</main>
+
+		<script src="ui.js"></script>
+		<script src="updtes.js"></script>
+		<script type="module" src="scripts/watchHistory.js"></script>
+		<script src="movie.js"></script>
+		<script src="app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.12.0/firebase-analytics.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				// Selecting the profile button and watch history container
+				const profileButton = document.getElementById("profile-button");
+				const watchHistoryContainer = document.getElementById(
+					"watch-history-container"
+				);
+				const movieElements = document.querySelectorAll(".movie"); // Selecting all movie elements
+				const profilePicElement = document.getElementById(
+					"homepage-profile-pic"
+				);
+
+				// Function to apply a flickering animation to the profile button
+				function applySpiralFlicker() {
+					profileButton.classList.add("spiral-flicker"); // Add flicker class
+					setTimeout(() => {
+						profileButton.classList.remove("spiral-flicker"); // Remove flicker class after 4.5 seconds
+					}, 4500);
+				}
+
+				// Adding event listeners for hover and click effects on the profile button
+				profileButton.addEventListener("mouseover", applySpiralFlicker);
+				profileButton.addEventListener("click", applySpiralFlicker);
+
+				// Fetch and display the user's watch history when the page loads
+				displayWatchHistory();
+
+				// Function to display watch history from localStorage
+				function displayWatchHistory() {
+					const watchHistory =
+						JSON.parse(localStorage.getItem("watchHistory")) || []; // Retrieve watch history
+					watchHistoryContainer.innerHTML = ""; // Clear previous watch history display
+
+					if (watchHistory.length > 0) {
+						// Create HTML for each movie in watch history
+						watchHistoryContainer.innerHTML = watchHistory
+							.map((movie) => `<div>${movie.title}</div>`) // Access and display the title
+							.join(""); // Join them into a single string
+					} else {
+						watchHistoryContainer.innerHTML = "No watch history available."; // Display message if no history
+					}
+				}
+
+				// Adding event listeners for each movie element to handle clicks
+				movieElements.forEach((movie) => {
+					movie.addEventListener("click", () => {
+						const movieTitle = movie.getAttribute("data-title"); // Get title from data attribute
+						const movieImage = movie.getAttribute("data-image"); // Get image path from data attribute
+						addToWatchHistory(movieTitle, movieImage); // Add the movie to watch history
+						incrementVisitorCount(); // Increment visitor count on movie click
+					});
+				});
+
+				// Function to add a movie to watch history
+				function addToWatchHistory(title, image) {
+					const watchHistory =
+						JSON.parse(localStorage.getItem("watchHistory")) || []; // Retrieve existing history
+					// Check if the movie is already in the history
+					if (!watchHistory.some((movie) => movie.title === title)) {
+						watchHistory.push({ title, image }); // Push new movie object to history
+						localStorage.setItem("watchHistory", JSON.stringify(watchHistory)); // Store updated history
+						displayWatchHistory(); // Update the displayed watch history
+					}
+				}
+
+				// Function to increment visitor count
+				function incrementVisitorCount() {
+					let visitorCount =
+						parseInt(localStorage.getItem("visitorCount")) || 0; // Get current count or initialize
+					visitorCount++; // Increment the count
+					localStorage.setItem("visitorCount", visitorCount); // Store updated count
+				}
+			});
+		</script>
+
+		<script type="module">
+			import {
+				storeWatchHistory,
+				incrementVisitorCount,
+			} from "./scripts/watchHistory.js";
+
+			document.addEventListener("DOMContentLoaded", () => {
+				const movieElements = document.querySelectorAll(".movie");
+
+				// Add event listeners to each movie item
+				movieElements.forEach((movie) => {
+					movie.addEventListener("click", () => {
+						const title = movie.getAttribute("data-title");
+						const image = movie.getAttribute("data-image");
+						storeWatchHistory(title, image); // Store the movie with title and image
+						incrementVisitorCount(); // Update visitor count if needed
+					});
+				});
+			});
+		</script>
+
+		<script type="module">
+			// Import the functions you need from the SDKs you need
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+			import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+			// TODO: Add SDKs for Firebase products that you want to use
+			// https://firebase.google.com/docs/web/setup#available-libraries
+
+			// Your web app's Firebase configuration
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			const firebaseConfig = {
+							apiKey: "w",
+				authDomain: "tbom",
+				projectId: "t4",
+				storageBucket: "tcom",
+				messagingSenderId: "36",
+				appId: "f",
+				measurementId: "4",
+			};
+
+			// Initialize Firebase
+			const app = initializeApp(firebaseConfig);
+			const analytics = getAnalytics(app);
+			document.addEventListener("DOMContentLoaded", () => {
+				const homepageProfilePic = document.getElementById(
+					"homepage-profile-pic"
+				);
+
+				// Load saved profile picture
+				const savedProfilePic = localStorage.getItem("profilePic");
+				if (savedProfilePic) {
+					homepageProfilePic.src = savedProfilePic;
+				}
+			});
+			document.addEventListener("DOMContentLoaded", () => {
+				// Apply the saved theme preference
+				const currentTheme = localStorage.getItem("theme") || "dark";
+				document.documentElement.setAttribute("data-theme", currentTheme);
+
+				window.addEventListener("themeChange", () => {
+					// Apply the saved theme preference on theme change
+					const newTheme = localStorage.getItem("theme");
+					document.documentElement.setAttribute("data-theme", newTheme);
+				});
+
+				const themeToggleBtn = document.getElementById("theme-toggle-btn");
+				themeToggleBtn.addEventListener("click", () => {
+					const newTheme =
+						document.documentElement.getAttribute("data-theme") === "dark"
+							? "light"
+							: "dark";
+					document.documentElement.setAttribute("data-theme", newTheme);
+					localStorage.setItem("theme", newTheme);
+
+					// Notify other pages
+					window.dispatchEvent(new Event("themeChange"));
+				});
+			});
+		</script>
+	</body>
+</html>

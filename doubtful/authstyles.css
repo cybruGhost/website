@@ -1,0 +1,220 @@
+Basic styling for body and container body {
+  font-family: 'Arial', sans-serif;
+  background-color: #141414;
+  /* Dark background for the whole page */
+  color: #e5e5e5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  overflow: hidden;
+}
+
+#auth-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+  background-color: #333;
+  /* Darker background for auth container */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Animation for hover */
+}
+
+#auth-container:hover {
+  transform: scale(1.02);
+  /* Slight scale on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+  /* Enhanced shadow on hover */
+}
+
+.banner {
+  background-color: #e50914;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 22px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.banner:hover {
+  background-color: #f40612;
+  /* Darker shade on hover */
+}
+
+h1 {
+  color: #e50914;
+  /* Header color */
+  margin-bottom: 20px;
+  font-size: 24px;
+  /* Increased header size */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  /* Shadow effect for headers */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  /* Increased padding for inputs */
+  margin: 5px 0;
+  border: 1px solid #666;
+  border-radius: 5px;
+  background-color: white;
+  /* Darker input background */
+  color: #e5e5e5;
+  transition: border 0.3s ease;
+  /* Animation for focus */
+}
+
+input:focus {
+  border-color: #e50914;
+  /* Border color change on focus */
+  outline: none;
+  /* Remove default outline */
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  /* Increased padding for buttons */
+  margin: 5px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #e50914;
+  /* Button background color */
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* Animation for hover */
+}
+
+button:hover {
+  background-color: #f40612;
+  /* Darker shade on hover */
+  transform: translateY(-2px);
+  /* Slight lift on hover */
+}
+
+.alert {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #444;
+  /* Background color for alerts */
+  color: #e5e5e5;
+}
+
+.success-message {
+  background-color: #28a745;
+  /* Green background for success messages */
+}
+
+.footer-text {
+  color: #999;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.email-verified-section {
+  display: none;
+  /* Hidden by default */
+}
+
+.email-verified-section h1 {
+  color: #28a745;
+  /* Green color for verified message */
+}
+
+#continue-button {
+  background-color: #28a745;
+  /* Green button for continue */
+}
+
+#continue-button:hover {
+  background-color: #218838;
+  /* Darker green on hover */
+}
+
+#continue-button:active {
+  transform: scale(0.95);
+  /* Scale down on click */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+  body {
+    height: auto;
+    padding: 20px;
+    display: block;
+  }
+
+  #auth-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .banner {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .alert {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .footer-text {
+    font-size: 10px;
+  }
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-container input {
+  width: 100%;
+  padding-right: 30px;
+  /* Space for the eye icon */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  /* Adjust to position the icon */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  /* Change cursor to indicate clickability */
+  user-select: none;
+  /* Prevent text selection */
+  margin: 0;
+}

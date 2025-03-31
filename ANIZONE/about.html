@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Anizone</title>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import {
+            getAuth,
+            onAuthStateChanged,
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: 
+            authDomain: "om",
+            projectId: "4",
+            storageBucket: "m",
+            messagingSenderId: "66",
+            appId: "f",
+            measurementId: "4",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Redirect if not signed in
+        onAuthStateChanged(auth, (user) => {
+            if (!user || !user.emailVerified) {
+                // If the user is not signed in or email not verified, redirect to sign-in page
+                window.location.href = "index.html";
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="ANIZONE/stylles.css">
+    <script src="firebaseConfig.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about-section">About</a></li>
+                <li><a href="#features-section">Features</a></li>
+                <li><a href="#download-section">Download</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="about-section">
+            <h1>Welcome to Anizone</h1>
+            <p>Anizone is the ultimate anime app that allows you to stream, download, and discuss your favorite shows. It's pretty, fast, and absolutely free!</p>
+        </section>
+
+        <section id="features-section">
+            <h2>Features:</h2>
+            <ul>
+                <li>Stream anime in HD</li>
+                <li>Download episodes for offline viewing</li>
+                <li>Track your favorite anime</li>
+                <li>Join anime discussion forums</li>
+            </ul>
+        </section>
+
+        <section id="download-section">
+            <h2>Download the Anizone App</h2>
+            <button id="downloadBtn">Download Anizone APK</button>
+        </section>
+    </div>
+    <!-- Notification Modal -->
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>You need to register or log in to download the app. You will be redirected to the registration page.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Anizone</p>
+    </footer>
+
+</body>
+</html>

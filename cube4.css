@@ -1,0 +1,820 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(-45deg, #000000, #e2190b, #0c0104, #bba12f);
+    /* Black, Pink, Red, Purple */
+    background-size: 400% 400%;
+    color: #fefefe;
+    /* Text Color */
+    position: relative;
+    animation: gradientBackground 15s ease infinite, fadeInHeader 1s ease-out, slideInHeader 1s ease-out;
+}
+
+/* Animation for gradient background */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animation for header fading in */
+@keyframes fadeInHeader {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animation for header sliding in */
+@keyframes slideInHeader {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    animation: logoAnimation 1s ease-out;
+}
+
+/* Animation for logo fading in */
+@keyframes logoAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Logo Styles */
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Floating Profile Button Styles */
+.floating-profile {
+    position: fixed;
+    /* Stays in place when scrolling */
+    top: 130px;
+    /* Adjust this value for the vertical position */
+    left: 20px;
+    /* Adjust this value for the horizontal position */
+    background-color: #333;
+    /* Background color of the button */
+    color: #fff;
+    /* Text color */
+    border-radius: 50%;
+    /* Round shape */
+    padding: 10px;
+    /* Padding around the content */
+    text-align: center;
+    /* Center the text and image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Add some shadow for depth */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Smooth transitions */
+    text-decoration: none;
+    /* Remove underline from text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    /* Ensure the button is brought to the front */
+}
+
+/* Hover effect for enlarging the profile button */
+.floating-profile:hover {
+    transform: scale(1.1);
+    /* Slightly enlarge on hover */
+    background-color: #444;
+    /* Change background on hover */
+}
+
+/* Profile icon styling */
+.profile-icon {
+    width: 50px;
+    /* Adjust size of the profile icon */
+    height: 50px;
+    /* Keep it proportional */
+    border-radius: 50%;
+    /* Round the profile image */
+    margin-bottom: 5px;
+    /* Space between the image and text */
+}
+
+.floating-profile p {
+    margin: 0;
+    /* Remove default margin from <p> */
+    font-size: 12px;
+    /* Adjust text size */
+}
+
+/* Animation for flickering effect */
+@keyframes flicker {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0); /* No shadow */
+    }
+    20% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 1), 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+    40% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 1), 0 0 20px rgba(0, 255, 0, 0.6);
+    }
+    60% {
+        box-shadow: 0 0 10px rgba(0, 0, 255, 1), 0 0 20px rgba(0, 0, 255, 0.6);
+    }
+    80% {
+        box-shadow: 0 0 10px rgba(255, 255, 0, 1), 0 0 20px rgba(255, 255, 0, 0.6);
+    }
+}
+
+/* Flicker effect */
+.flicker {
+    animation: flicker 4.5s linear;
+} */
+
+/* //welcome logo/ */
+.animated-line {
+    height: 4px;
+    /* Adjust height as needed */
+    width: 25%;
+    /* Adjust width as needed */
+    margin-top: 5px;
+    /* Space between text and line */
+    background: linear-gradient(90deg, #ff0000, #00ff00, #0000ff, #ff00ff, #00ffff, #ffff00);
+    /* Gradient colors */
+    background-size: 600% 100%;
+    /* Allows for smoother animation */
+    animation: flicker 15s linear infinite;
+    /* Slower flicker animation */
+    border-radius: 2px;
+    /* Optional: to round edges */
+}
+/* Keyframes for flickering effect */
+@keyframes flicker {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+        /* Start and end with Red */
+    }
+
+    10% {
+        background-position: 100% 50%;
+        /* Red to Green */
+    }
+
+    20% {
+        background-position: 200% 50%;
+        /* Green to Blue */
+    }
+
+    30% {
+        background-position: 300% 50%;
+        /* Blue to Magenta */
+    }
+
+    40% {
+        background-position: 400% 50%;
+        /* Magenta to Cyan */
+    }
+
+    50% {
+        background-position: 500% 50%;
+        /* Cyan to Yellow */
+    }
+}
+
+/* Glitch Effect (triggered occasionally) */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    10% {
+        transform: translate(-1px, 0);
+        /* Reduced glitch movement */
+    }
+
+    20% {
+        transform: translate(1px, 0);
+        /* Reduced glitch movement */
+    }
+
+    30% {
+        transform: translate(-1px, 0);
+    }
+
+    40% {
+        transform: translate(0);
+    }
+
+    50% {
+        transform: translate(0);
+    }
+
+    60% {
+        transform: translate(1px, 0);
+    }
+
+    70% {
+        transform: translate(-1px, 0);
+    }
+
+    80% {
+        transform: translate(0);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Glitch Trigger */
+.animated-line.glitch {
+    animation: flicker 15s linear infinite, glitch 0.5s infinite;
+    /* Slower glitch effect */
+}
+/* Logo Container */
+.logo-container {
+    display: flex;
+    align-items: center;
+    animation: logoAnimation 1s ease-out;
+}
+
+/* Animation for logo fading in */
+@keyframes logoAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Logo Styles */
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Search Input */
+#search {
+    background: transparent;
+    padding: 0.5em 1em;
+    border: 2px solid #fab9b9;
+    border-radius: 50px;
+    outline: none;
+    width: 150px;
+    transition: border-color 0.3s, transform 0.3s;
+    color: #fff;
+}
+
+/* Hover effect for search input */
+#search:hover {
+    border-color: #f10a0a;
+    transform: scale(1.05);
+}
+
+/* Movie Form */
+#movie-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.update-corner {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: #fff;
+}
+
+.update-corner h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.update-corner p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.updates-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.update {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+}
+
+.update h2 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.update p {
+    margin: 5px 0;
+}
+
+.update small {
+    display: block;
+    color: #bbb;
+    margin-top: 10px;
+}
+
+.update-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #ff9f1a;
+}
+
+.update-link:hover {
+    text-decoration: underline;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    .app {
+        width: 120px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .app {
+        width: 100px;
+        padding: 5px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 300px) {
+    .app {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+    }
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+
+form {
+    display: flex;
+}
+
+#search {
+    background: transparent;
+    padding: 0.5em 1em;
+    border: 2px solid #fab9b9;
+    /*(--brand-color);*/
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 100px;
+    transition: border-color 0.3s;
+    color: #fff;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #e50914;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+.container {
+    padding: 20px;
+}
+
+.result-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* //movie container allignment  */
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    width: 100%;
+    /* Adjust width to fit the parent container */
+}
+
+/* Basic reset MeganMedia */
+ul {
+    list-style: none;
+    /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+/* Container for the animation */
+.animated-list {
+    padding: 0;
+}
+
+/* Style for each list item */
+.animated-list li {
+    opacity: 0;
+    /* Start hidden */
+    transform: translateY(20px);
+    /* Start slightly below */
+    animation: fadeInUp 1s ease-out forwards;
+    /* Apply animation */
+    margin-bottom: 15px;
+    /* Space between items */
+}
+
+/* Animation for the list items */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style for the anchor tags */
+.animated-list a {
+    text-decoration: none;
+    /* Remove underline */
+    color: #23d5ab;
+    /* Color for the link */
+    font-weight: 600;
+    /* Bold text */
+    font-size: 18px;
+    /* Font size */
+    transition: color 0.3s ease;
+    /* Smooth color transition */
+}
+
+/* Hover effect for the anchor tags */
+.animated-list a:hover {
+    color: #fff;
+    /* Change color on hover */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Add text shadow on hover */
+}
+
+/* Flexbox layout for larger screens */
+@media (min-width: 1600px) {
+    .movies-container {
+        display: grid;
+        /* Use grid for larger screens */
+        grid-template-columns: repeat(5, 1fr);
+        /* Five columns */
+    }
+}
+
+@media (min-width: 2000px) {
+    .movies-container {
+        grid-template-columns: repeat(6, 1fr);
+        /* Six columns */
+    }
+}
+
+/* Flexbox layout for medium screens */
+@media (max-width: 900px) {
+    .movies-container {
+        grid-template-columns: 1fr;
+        /* Single column layout */
+        grid-auto-rows: 60vh;
+        /* Adjust row height */
+    }
+}
+
+/* Flexbox layout for smaller screens */
+@media (max-width: 500px) {
+    .movies-container {
+        grid-template-columns: 1fr 1fr;
+        /* Two columns */
+        grid-auto-rows: 60vh;
+        /* Adjust row height */
+    }
+}
+
+/* Grid layout for very small screens */
+@media (max-width: 300px) {
+    .movies-container {
+        display: grid;
+        /* Use grid for very small screens */
+        grid-template-columns: 1fr 1fr;
+        /* Two columns of equal width */
+        grid-auto-rows: auto;
+        /* Adjust row height to fit content */
+        gap: 0.5em;
+        /* Space between grid items */
+        width: 100%;
+        /* Full width of the container */
+    }
+}
+
+
+/* General Styling for Movie Cards and the device view*/
+
+/* Movie Form */
+#movie-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #ac0715;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+#back-button {
+    padding: 2px 5px;
+    font-size: 12px;
+    border: 1px solid #fff;
+    background-color: #2ec560;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Main Styles */
+main {
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Movies Container */
+.movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 10px;
+    justify-content: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Movie Card */
+.movie {
+    border: None;
+    padding: 10px;
+    width: 300px;
+    height: 400px;
+    /* Fixed width for consistency */
+    background-color:transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    animation: fadeInUp 1s ease-in-out;
+    overflow: hidden;
+    /* Ensure contents are clipped */
+    display: flex;
+    flex-direction: column;
+    perspective: 1000px;
+    /* For 3D effects */
+}
+/* Title Styling */
+.movie-title {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Movie Image */
+.movie img {
+    width: 100%;
+    /* Full width of the card */
+    height: 100%;
+    /* Full height of the card */
+    object-fit: fill;
+    border-radius: 10px;
+    /* border-radius: 8px 8px 0 0; */
+    transition: transform 0.5s ease;
+    /* Transition for any hover effects */
+}
+
+/* Brief Section Styling */
+.movie-brief {
+    padding: 10px;
+    color: #fff;
+    background: none;
+    /* Remove background on hover */
+}
+/* Overview Section Styling */
+.movie-overview {
+    display: none;
+    /* Hide overview section by default */
+}
+/* Movie Button */
+/* .view-details-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #ff9f1a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+} */
+
+.view-details-button:hover {
+    background-color: #e68a00;
+}
+
+/* Hover Effects */
+.movie:hover {
+    transform: rotateY(10deg) scale(1.05);
+    /* Rotate and scale effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.movie:hover img {
+    transform: scale(1.1);
+    /* Slight zoom on image */
+}
+
+/* Responsive Design for Tablets */
+@media (max-width: 900px) {
+    .movies-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .movie {
+        width: auto;
+        /* Adjust width to fit grid layout */
+    }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 500px) {
+    .movies-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .movie {
+        width: auto;
+        /* Adjust width to fit grid layout */
+    }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Default Dark Theme */
+:root {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --button-background: #eb0505;
+    --button-text: #ffffff;
+}
+
+/* Light Theme */
+[data-theme='light'] {
+    --background-color: #ffffff;
+    --text-color: #030202;
+    --number-color: #0a0909;
+    --button-background: #ff2424;
+    --button-text: #fdf9f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+button {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f70e48;
+    /* Adjust hover color as needed */
+}
