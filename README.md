@@ -5,6 +5,7 @@
 > Live Site: [thecub4.netlify.app](https://thecub4.netlify.app)
 
 ---
+for sign in..put your own firebase credentials or remove the login logic
 
 ## 🎬 Features
 
